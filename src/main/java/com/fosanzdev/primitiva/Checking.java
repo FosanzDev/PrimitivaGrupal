@@ -11,6 +11,12 @@ public class Checking {
         this.winComplementalNum = CombinationManager.newNumber(winCombination);
     }
 
+    public void newWinningCombination() {
+        this.winCombination = CombinationManager.newCombination();
+        this.winReintegro = CombinationManager.newReintegro();
+        this.winComplementalNum = CombinationManager.newNumber(winCombination);
+    }
+
     public Category checkWin(Boleto playerTicket) {
         int contNumbers = 0;
         boolean reintegro = false;
