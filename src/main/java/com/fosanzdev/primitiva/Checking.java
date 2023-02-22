@@ -34,9 +34,6 @@ public class Checking {
         }
 
         switch(contNumbers) {
-            case 1:
-            case 2:
-                return Category.NONE;
             case 3:
                 return Category.CAT_5;
             case 4:
