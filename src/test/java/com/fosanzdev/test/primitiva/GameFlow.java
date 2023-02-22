@@ -1,4 +1,4 @@
-package com.test.fosanzdev.primitiva;
+package com.fosanzdev.test.primitiva;
 
 import com.fosanzdev.jresources.JDeploy;
 import com.fosanzdev.jresources.JRequest;

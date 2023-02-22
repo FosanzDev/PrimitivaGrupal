@@ -1,4 +1,4 @@
-package com.test.fosanzdev.primitiva;
+package com.fosanzdev.test.primitiva;
 
 import java.util.Random;
 
@@ -44,8 +44,12 @@ public class CombinationManager {
      * Generates a new random number between 0 and 49
      * @ return a new random number between 0 and 49
      */
-    public static int newNumber(){
-        return random.nextInt(49);
+    public static int newNumber(int[] ganadora){
+        int k = random.nextInt(49);
+        while(contains(ganadora, k)) {
+            k = random.nextInt(49);
+        }
+        return k;
     }
 
 

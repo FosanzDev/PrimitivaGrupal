@@ -1,4 +1,4 @@
-package com.test.fosanzdev.primitiva;
+package com.fosanzdev.test.primitiva;
 
 public class Comprobador {
 
@@ -17,7 +17,7 @@ public class Comprobador {
     public Comprobador(){
         combinacionGanadora = CombinationManager.newCombination();
         reintegroGanador = CombinationManager.newReintegro();
-        complementario = CombinationManager.newNumber();
+        complementario = CombinationManager.newNumber(combinacionGanadora);
     }
 
     /**
@@ -26,7 +26,7 @@ public class Comprobador {
     public void newWinningCombination(){
         combinacionGanadora = CombinationManager.newCombination();
         reintegroGanador = CombinationManager.newReintegro();
-        complementario = CombinationManager.newNumber();
+        complementario = CombinationManager.newNumber(combinacionGanadora);
     }
 
 

@@ -1,4 +1,4 @@
-package com.test.fosanzdev.primitiva;
+package com.fosanzdev.test.primitiva;
 
 public enum ResultEnum {
     // Each enum represents a different result of the check

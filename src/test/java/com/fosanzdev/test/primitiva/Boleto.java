@@ -1,4 +1,4 @@
-package com.test.fosanzdev.primitiva;
+package com.fosanzdev.test.primitiva;
 
 public class Boleto {
 
