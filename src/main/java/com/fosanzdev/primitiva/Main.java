@@ -8,7 +8,9 @@ public class Main {
     public static void main(String[] args) {
         int[] numeros = new int[7];
         Scanner lector = new Scanner(System.in);
-        int opcion;
+        int opcion,opcionDos;
+        boolean salirPrograma = false;
+        boolean cambiarCombinacion = false;
         do {
             opcion = mostrarMenu();
             switch (opcion) {
@@ -27,7 +29,29 @@ public class Main {
                 default:
                     System.out.println("OPCIÓN INCORRECTA");
             }
-        } while (opcion != 0);
+            if (opcion == 0) {
+                salirPrograma = true;
+            } else {
+                do {
+                    opcionDos = mostrarSubmenu();
+                    switch(opcionDos) {
+                        case 1:
+
+                        case 2:
+
+                        case 3:
+
+                        case 4:
+
+                        case 5:
+
+                    }
+                    if(opcionDos == 0) {
+                        cambiarCombinacion = true;
+                    }
+                }while(!cambiarCombinacion);
+            }
+        } while (!salirPrograma);
         System.out.println("¡HASTA LA PRÓXIMA!");
     }
 
@@ -53,7 +77,7 @@ public class Main {
         return opcion;
     }
 
-    public static void mostrarSubmenu() {
+    public static int mostrarSubmenu() {
         int opcion;
         boolean valido;
         do {
@@ -65,7 +89,8 @@ public class Main {
             System.out.println("4. CICLO DE 10000 SORTEOS");
             System.out.println("5. JUGAR HASTA OBTENER PREMIO CATEGORÍA ESPECIAL");
             System.out.println("---------------------");
-            System.out.println("0. VOLVER AL MENÚ PRINCIPAL");
+            System.out.println("0. CAMBIAR COMBINACIÓN");
+            System.out.println("Introduce una opción: ");
             opcion = lector.nextInt();
             lector.nextLine();
             valido = opcion >= 0 && opcion <= 5;
@@ -73,5 +98,6 @@ public class Main {
                 System.out.println("OPCIÓN INCORRECTA");
             }
         } while (!valido);
+        return opcion;
     }
 }
