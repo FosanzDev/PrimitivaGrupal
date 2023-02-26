@@ -3,17 +3,19 @@ import java.util.Scanner;
 
 public class Main {
     static int opcion;
-    int[] boleto = new int[5];
+    int[] boleto = new int[7];
     public static void main(String[] args) {
-        int[] vector = new int[5];
+        int[] vector = new int[7];
         Scanner lector = new Scanner(System.in);
         do {
             mostrarMenu();
             opcion = lector.nextInt();
             switch (opcion) {
                 case 1:
-                    System.out.println("INTRODUCE LOS NÚMEROS DEL BOLETO");
-
+                    System.out.println("INTRODUCE LOS NÚMEROS DEL BOLETO UNO POR UNO");
+                    for (int i = 1; i <= 6; i++){
+                        lector.nextInt();
+                    }
                     break;
                 case 2:
                     break;
@@ -40,12 +42,12 @@ public class Main {
                 if (!valido) {
                     System.out.println("OPCIÓN INCORRECTA");
                 }
-            }
+            } while (!valido);
         }
 
         public static int mostrarSubmenu() {
             int opcion;
-            boolean validado;
+            boolean valido;
             do {
                 System.out.println("ELIGE LA MODALIDAD DE JUEGO");
                 System.out.println("---------------------");
@@ -58,11 +60,11 @@ public class Main {
                 System.out.println("0. VOLVER AL MENÚ PRINCIPAL");
                 opcion = lector.nextInt();
                 lector.nextLine();
-                validado = opcion >= 0 && opcion <= 5;
-                if (!validado) {
+                valido = opcion >= 0 && opcion <= 5;
+                if (!valido) {
                     System.out.println("OPCIÓN INCORRECTA");
                 }
-            } while (!validado);
+            } while (!valido);
         }
     }
 }
