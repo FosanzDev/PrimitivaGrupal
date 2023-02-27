@@ -8,22 +8,22 @@ public class Main {
     public static Category prize;
 
     public static void main(String[] args) {
-        int[] numeros = new int[7];
+        int[] numbers = new int[7];
         Scanner lector = new Scanner(System.in);
-        int opcion,opcionDos;
-        boolean salirPrograma = false;
-        boolean cambiarCombinacion = false;
+        int option,optionTwo;
+        boolean exitProgram = false;
+        boolean changeCombination = false;
         do {
-            opcion = mostrarMenu();
-            switch (opcion) {
+            option = showMenu();
+            switch (option) {
                 case 1:
                     System.out.println("INTRODUCE LOS NÚMEROS DEL BOLETO UNO POR UNO");
                     for (int i = 0; i < 6; i++){
                         System.out.println("Introduce un número (0-49): ");
                         int num = lector.nextInt(49);
-                        numeros[i] = num;
+                        numbers[i] = num;
                     }
-                    boleto = new Boleto(numeros);
+                    boleto = new Boleto(numbers);
                     break;
                 case 2:
                     boleto = new Boleto();
@@ -31,20 +31,20 @@ public class Main {
                 default:
                     System.out.println("OPCIÓN INCORRECTA");
             }
-            if (opcion == 0) {
-                salirPrograma = true;
+            if (option == 0) {
+                exitProgram = true;
             } else {
                 do {
                     boolean valid;
-                    opcionDos = mostrarSubmenu();
-                    switch(opcionDos) {
+                    optionTwo = showSubmenu();
+                    switch(optionTwo) {
 
                         case 1:
-                            prize = juego(boleto);
+                            prize = game(boleto);
                             printPrices(prize);
                         case 2:
                             do {
-                                prize = juego(boleto);
+                                prize = game(boleto);
                                 valid = prize != Category.NONE;
                                 if(valid) {
                                     printPrices(prize);
@@ -53,7 +53,7 @@ public class Main {
 
                         case 3:
                             do {
-                                prize = juego(boleto);
+                                prize = game(boleto);
                                 valid = prize != Category.NONE && prize != Category.CAT_ESP;
                                 if(valid) {
                                     printPrices(prize);
@@ -68,7 +68,7 @@ public class Main {
                             int contCat5 = 0;
                             int contCat_ESP = 0;
                             for (int i = 0; i <10000; i++){
-                                prize = juego(boleto);
+                                prize = game(boleto);
                                 switch(prize) {
                                     case NONE -> contCat_None++;
                                     case CAT_5 -> contCat5++;
@@ -90,7 +90,7 @@ public class Main {
 
                         case 5:
                             do {
-                                prize = juego(boleto);
+                                prize = game(boleto);
                                 valid = prize == Category.CAT_ESP;
                                 if(valid) {
                                     printPrices(prize);
@@ -98,18 +98,18 @@ public class Main {
                             } while (!valid);
 
                     }
-                    if(opcionDos == 0) {
-                        cambiarCombinacion = true;
+                    if(optionTwo == 0) {
+                        changeCombination = true;
                     }
-                }while(!cambiarCombinacion);
+                }while(!changeCombination);
             }
-        } while (!salirPrograma);
+        } while (!exitProgram);
         System.out.println("¡HASTA LA PRÓXIMA!");
     }
 
-    public static int mostrarMenu() {
-        int opcion;
-        boolean valido;
+    public static int showMenu() {
+        int option;
+        boolean valid;
         do {
             System.out.println("JUEGO DE LA PRIMITIVA");
             System.out.println("---------------------");
@@ -119,19 +119,19 @@ public class Main {
             System.out.println("---------------------");
             System.out.println("0.-SALIR");
             System.out.println("Introduce una opción: ");
-            opcion = lector.nextInt();
+            option = lector.nextInt();
             lector.nextLine();
-            valido = opcion >= 0 && opcion <= 2;
-            if (!valido) {
-                System.out.println("OPCIÓN INCORRECTA, PULSE OTRA DENTRO DEL RANGO");
+            valid = option >= 0 && option <= 2;
+            if (!valid) {
+                System.out.println("OPCIÓN INCORRECTA, ELIJA UNA OPCIÓN CONTENIDA DENTRO DEL RANGO");
             }
-        } while (!valido);
-        return opcion;
+        } while (!valid);
+        return option;
     }
 
-    public static int mostrarSubmenu() {
-        int opcion;
-        boolean valido;
+    public static int showSubmenu() {
+        int option;
+        boolean valid;
         do {
             System.out.println("ELIGE LA MODALIDAD DE JUEGO");
             System.out.println("---------------------");
@@ -143,17 +143,17 @@ public class Main {
             System.out.println("---------------------");
             System.out.println("0. CAMBIAR COMBINACIÓN");
             System.out.println("Introduce una opción: ");
-            opcion = lector.nextInt();
+            option = lector.nextInt();
             lector.nextLine();
-            valido = opcion >= 0 && opcion <= 5;
-            if (!valido) {
-                System.out.println("OPCIÓN INCORRECTA");
+            valid = option >= 0 && option <= 5;
+            if (!valid) {
+                System.out.println("OPCIÓN INCORRECTA, ELIJA UNA OPCIÓN CONTENIDA DENTRO DEL RANGO");
             }
-        } while (!valido);
-        return opcion;
+        } while (!valid);
+        return option;
     }
 
-    public static Category juego(Boleto boletoJugador) {
+    public static Category game(Boleto boletoJugador) {
         Checking winCombination = new Checking();
         Category prize = winCombination.checkWin(boletoJugador);
         return prize;
@@ -161,13 +161,13 @@ public class Main {
 
     public static void printPrices(Category prize) {
         switch(prize) {
-            case NONE -> System.out.println("No se ha ganado nungún premio");
-            case CAT_5 -> System.out.println("Has ganado un premio de categroria 5");
-            case CAT_4 -> System.out.println("Has ganado un premio de categroria 4");
-            case CAT_3 -> System.out.println("Has ganado un premio de categroria 3");
-            case CAT_2 -> System.out.println("Has ganado un premio de categroria 2");
-            case CAT_1 -> System.out.println("Has ganado un premio de categroria 1");
-            case CAT_ESP -> System.out.println("Has ganado un premio de categroria especial");
+            case NONE -> System.out.println("NO SE HA GANADO NINGÚN PREMIO...");
+            case CAT_5 -> System.out.println("¡HAS GANADO UN PREMIO DE CATEGORÍA 5!");
+            case CAT_4 -> System.out.println("¡HAS GANADO UN PREMIO DE CATEGORÍA 4!");
+            case CAT_3 -> System.out.println("¡HAS GANADO UN PREMIO DE CATEGORÍA 3!");
+            case CAT_2 -> System.out.println("¡HAS GANADO UN PREMIO DE CATEGORÍA 2!");
+            case CAT_1 -> System.out.println("¡HAS GANADO UN PREMIO DE CATEGORÍA 1!");
+            case CAT_ESP -> System.out.println("¡¡¡HAS GANADO UN PREMIO DE CATEGORÍA ESPECIAL!!!");
         }
     }
 }
