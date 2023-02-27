@@ -1,10 +1,9 @@
 package com.fosanzdev.primitiva;
 
-import java.util.Random;
-
+import java.security.SecureRandom;
 public class CombinationManager {
 
-    private static final Random random = new Random();
+    private static final SecureRandom random = new SecureRandom();
 
     /**
      * Generates a new random combination of 6 numbers between 0 and 49
