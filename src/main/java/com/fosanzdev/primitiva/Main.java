@@ -1,9 +1,11 @@
 package com.fosanzdev.primitiva;
+import javax.crypto.spec.PSource;
 import java.util.Scanner;
 
 public class Main {
     public static Scanner lector;
     public static Boleto boleto;
+    public static Category prize;
 
     public static void main(String[] args) {
         int[] numeros = new int[7];
@@ -33,17 +35,67 @@ public class Main {
                 salirPrograma = true;
             } else {
                 do {
+                    boolean valid;
                     opcionDos = mostrarSubmenu();
                     switch(opcionDos) {
-                        case 1:
 
+                        case 1:
+                            prize = juego(boleto);
+                            printPrices(prize);
                         case 2:
+                            do {
+                                prize = juego(boleto);
+                                valid = prize != Category.NONE;
+                                if(valid) {
+                                    printPrices(prize);
+                                }
+                            } while (!valid);
 
                         case 3:
-
+                            do {
+                                prize = juego(boleto);
+                                valid = prize != Category.NONE && prize != Category.CAT_ESP;
+                                if(valid) {
+                                    printPrices(prize);
+                                }
+                            } while (!valid);
                         case 4:
+                            int contCat_None = 0;
+                            int contCat1 = 0;
+                            int contCat2 = 0;
+                            int contCat3 = 0;
+                            int contCat4 = 0;
+                            int contCat5 = 0;
+                            int contCat_ESP = 0;
+                            for (int i = 0; i <10000; i++){
+                                prize = juego(boleto);
+                                switch(prize) {
+                                    case NONE -> contCat_None++;
+                                    case CAT_5 -> contCat5++;
+                                    case CAT_4 -> contCat4++;
+                                    case CAT_3 -> contCat3++;
+                                    case CAT_2 -> contCat2++;
+                                    case CAT_1 -> contCat1++;
+                                    case CAT_ESP -> contCat_ESP++;
+                                }
+                            }
+                            System.out.println("-- RESULTADOS --");
+                            System.out.println("Ningún premio: " + contCat_None);
+                            System.out.println("Premio de categoría 5: " + contCat5);
+                            System.out.println("Premio de categoría 4: " + contCat4);
+                            System.out.println("Premio de categoría 3: " + contCat3);
+                            System.out.println("Premio de categoría 2: " + contCat2);
+                            System.out.println("Premio de categoría 1: " + contCat1);
+                            System.out.println("Premio de categoría especial: " + contCat_ESP);
 
                         case 5:
+                            do {
+                                prize = juego(boleto);
+                                valid = prize == Category.CAT_ESP;
+                                if(valid) {
+                                    printPrices(prize);
+                                }
+                            } while (!valid);
 
                     }
                     if(opcionDos == 0) {
@@ -99,5 +151,23 @@ public class Main {
             }
         } while (!valido);
         return opcion;
+    }
+
+    public static Category juego(Boleto boletoJugador) {
+        Checking winCombination = new Checking();
+        Category prize = winCombination.checkWin(boletoJugador);
+        return prize;
+    }
+
+    public static void printPrices(Category prize) {
+        switch(prize) {
+            case NONE -> System.out.println("No se ha ganado nungún premio");
+            case CAT_5 -> System.out.println("Has ganado un premio de categroria 5");
+            case CAT_4 -> System.out.println("Has ganado un premio de categroria 4");
+            case CAT_3 -> System.out.println("Has ganado un premio de categroria 3");
+            case CAT_2 -> System.out.println("Has ganado un premio de categroria 2");
+            case CAT_1 -> System.out.println("Has ganado un premio de categroria 1");
+            case CAT_ESP -> System.out.println("Has ganado un premio de categroria especial");
+        }
     }
 }
