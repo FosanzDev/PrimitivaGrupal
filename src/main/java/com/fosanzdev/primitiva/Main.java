@@ -6,7 +6,6 @@ import java.util.Scanner;
  * The Main class will to show the menu será la encargada de mostrar los menús e interactuar con el usuario, además de
  * enviar la información introducida por el usuario a las distintas clases que conforman La Primitiva.
  * @autor Marco Holtman
- *
  */
 public class Main {
     public static Scanner lector;
@@ -14,6 +13,7 @@ public class Main {
     public static Boleto boleto;
     //This is the object where the numbers are going to be stored.
     public static Category prize;
+    //This is an enum class with the different prizes.
 
     public static void main(String[] args) {
         int[] numbers = new int[7];
@@ -181,6 +181,13 @@ public class Main {
         return option;
     }
 
+    /**
+     * This method reproduce the process of the game which the player tickets
+     * checks in the class "Checking". After, this return the prize which is kept
+     * on the enum class category.
+     * @param boletoJugador
+     * @return the prize that the user won.
+     */
     public static Category game(Boleto boletoJugador) {
         Checking winCombination = new Checking();
         Category prize = winCombination.checkWin(boletoJugador);
