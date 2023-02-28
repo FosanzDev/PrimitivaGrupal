@@ -1,32 +1,50 @@
 package com.fosanzdev.primitiva;
-import javax.crypto.spec.PSource;
 import java.util.Scanner;
 
+/**
+ *
+ * The Main class will to show the menu será la encargada de mostrar los menús e interactuar con el usuario, además de
+ * enviar la información introducida por el usuario a las distintas clases que conforman La Primitiva.
+ * @autor Marco Holtman
+ *
+ */
 public class Main {
     public static Scanner lector;
+    //This lector will read what the user insert on the keyboard.
     public static Boleto boleto;
+    //This is the object where the numbers are going to be stored.
     public static Category prize;
 
     public static void main(String[] args) {
         int[] numbers = new int[7];
+        //This is the array where the numbers introduced by the user are going to be stored.
         Scanner lector = new Scanner(System.in);
         int option,optionTwo;
+        //Variables that will read the number introduced by the user in the menus.
+        //"option" is the variable to read .
+        //"optionTwo" is for the Second menu (Submenu).
         boolean exitProgram = false;
+        //If "exitProgram" becomes true the user will be out of the program.
         boolean changeCombination = false;
+        //If "changeCombination" becomes true the user will be returned to the main Menu.
         do {
             option = showMenu();
             switch (option) {
                 case 1:
                     System.out.println("INTRODUCE LOS NÚMEROS DEL BOLETO UNO POR UNO");
                     for (int i = 0; i < 6; i++){
+                        //This loop will recieve a number sent it by the user
+                        // and it will be saved in the array "numbers"
                         System.out.println("Introduce un número (0-49): ");
                         int num = lector.nextInt(49);
                         numbers[i] = num;
                     }
                     boleto = new Boleto(numbers);
+                    //This is the object "Boleto" filled with the numbers of the array "numbers".
                     break;
                 case 2:
                     boleto = new Boleto();
+                    //This is an empty object "Boleto" that later will be filled with random numbers.
                     break;
                 default:
                     System.out.println("OPCIÓN INCORRECTA");
@@ -107,6 +125,11 @@ public class Main {
         System.out.println("¡HASTA LA PRÓXIMA!");
     }
 
+    /**
+     * This method will show up the Main Menu. It will wait to the user answer and when
+     * the user chooses a valid option it will be out of the loop.
+     * @return The option chosen by the user
+     */
     public static int showMenu() {
         int option;
         boolean valid;
@@ -129,6 +152,11 @@ public class Main {
         return option;
     }
 
+    /**
+     * This method will show up the Second Menu. It will wait to the user answer and when
+     * the user chooses a valid option it will be out of the loop.
+     * @return The option chosen by the user
+     */
     public static int showSubmenu() {
         int option;
         boolean valid;
@@ -159,6 +187,10 @@ public class Main {
         return prize;
     }
 
+    /**
+     * This method will print on screen which prize has won the user.
+     * @param prize Prize of the game played.
+     */
     public static void printPrices(Category prize) {
         switch(prize) {
             case NONE -> System.out.println("NO SE HA GANADO NINGÚN PREMIO...");
