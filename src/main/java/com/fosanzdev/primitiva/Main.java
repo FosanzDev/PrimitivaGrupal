@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @autor Marco Holtman
  */
 public class Main {
-    public static Scanner lector;
+    public static Scanner lector = new Scanner(System.in);
     //This lector will read what the user insert on the keyboard.
     public static Boleto boleto;
     //This is the object where the numbers are going to be stored.
@@ -18,7 +18,6 @@ public class Main {
     public static void main(String[] args) {
         int[] numbers = new int[7];
         //This is the array where the numbers introduced by the user are going to be stored.
-        Scanner lector = new Scanner(System.in);
         int option,optionTwo;
         //Variables that will read the number introduced by the user in the menus.
         //"option" is the variable to read .
@@ -60,6 +59,7 @@ public class Main {
                         case 1:
                             prize = game(boleto);
                             printPrices(prize);
+                            break;
                         case 2:
                             do {
                                 prize = game(boleto);
@@ -68,6 +68,7 @@ public class Main {
                                     printPrices(prize);
                                 }
                             } while (!valid);
+                            break;
 
                         case 3:
                             do {
@@ -77,6 +78,7 @@ public class Main {
                                     printPrices(prize);
                                 }
                             } while (!valid);
+                            break;
                         case 4:
                             int contCat_None = 0;
                             int contCat1 = 0;
@@ -105,6 +107,7 @@ public class Main {
                             System.out.println("Premio de categoría 2: " + contCat2);
                             System.out.println("Premio de categoría 1: " + contCat1);
                             System.out.println("Premio de categoría especial: " + contCat_ESP);
+                            break;
 
                         case 5:
                             do {
@@ -114,6 +117,7 @@ public class Main {
                                     printPrices(prize);
                                 }
                             } while (!valid);
+                            break;
 
                     }
                     if(optionTwo == 0) {
